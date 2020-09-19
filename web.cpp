@@ -1,26 +1,25 @@
 /*
-»¶Ó­²é¿´web.exeµÄÔ´´úÂë
-¿ÉÒÔÊ¹ÓÃÆäÖĞµÄ´úÂë£¬µ«ÊÇÒª×¢Ã÷×÷Õß
-×÷ÕßQQ3239088523
-×îºó¸üĞÂ£º2020.9.18
+æ¬¢è¿æŸ¥çœ‹web.exeçš„æºä»£ç 
+å¯ä»¥ä½¿ç”¨å…¶ä¸­çš„ä»£ç ï¼Œä½†æ˜¯è¦æ³¨æ˜ä½œè€…
+æœ€åæ›´æ–°ï¼š2020.9.18
 For NXGJ 
 */ 
-//Í·ÎÄ¼ş 
+//å¤´æ–‡ä»¶ 
 #include <iostream>
 #include <windows.h>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <shellapi.h> 
-//ÃüÃû¿Õ¼ä 
+//å‘½åç©ºé—´ 
 using namespace std;
-string str; //Êı¾İ 
-string name; //Í¬Ñ§ĞÕÃû 
-char end[50]="-----"; //½áÊø±êÖ¾ 
-char *p; //Ö¸Õë 
-string urls[30]; //´æ´¢ÕÒµ½µÄµØÖ· 
-int url=0; //²éÕÒµ½µÄµØÖ·µÄÊıÁ¿ 
-int getdata() //»ñÈ¡×÷ÒµÁĞ±íµÄº¯Êı 
+string str; //æ•°æ® 
+string name; //åŒå­¦å§“å 
+char end[50]="-----"; //ç»“æŸæ ‡å¿— 
+char *p; //æŒ‡é’ˆ 
+string urls[30]; //å­˜å‚¨æ‰¾åˆ°çš„åœ°å€ 
+int url=0; //æŸ¥æ‰¾åˆ°çš„åœ°å€çš„æ•°é‡ 
+int getdata() //è·å–ä½œä¸šåˆ—è¡¨çš„å‡½æ•° 
 {
 	ifstream get("data.txt");
 	std::ostringstream tmp; 
@@ -28,7 +27,7 @@ int getdata() //»ñÈ¡×÷ÒµÁĞ±íµÄº¯Êı
    	str = tmp.str();
 	return 0;
 }
-int search() //Ö÷ÒªËã·¨ Í¨¹ıĞÕÃû¶¨Î»²¢ÌáÈ¡url 
+int search() //ä¸»è¦ç®—æ³• é€šè¿‡å§“åå®šä½å¹¶æå–url 
 {
 	string::size_type idx;
 	ifstream file;
@@ -72,7 +71,7 @@ int search() //Ö÷ÒªËã·¨ Í¨¹ıĞÕÃû¶¨Î»²¢ÌáÈ¡url
     }
 	//file.close();
 }
-int print() //Êä³öµØÖ·µÄº¯Êı 
+int print() //è¾“å‡ºåœ°å€çš„å‡½æ•° 
 {
 	int b=0;
 	for(int a=0;a<url;a++)
@@ -80,7 +79,7 @@ int print() //Êä³öµØÖ·µÄº¯Êı
 		cout<<urls[a]<<endl; 
 	}
 }
-int ie() //ÓÃä¯ÀÀÆ÷´ò¿ªµØÖ·µÄº¯Êı 
+int ie() //ç”¨æµè§ˆå™¨æ‰“å¼€åœ°å€çš„å‡½æ•° 
 {
 	for(int a=0;a<url;a++)
 	{
@@ -88,24 +87,24 @@ int ie() //ÓÃä¯ÀÀÆ÷´ò¿ªµØÖ·µÄº¯Êı
 		 _sleep(1000); 
 	}	
 }
-int main() //Ö÷º¯Êı 
+int main() //ä¸»å‡½æ•° 
 {
 	getdata();
 	while(1)
 	{ 
-		cout<<"×÷ÒµÁĞ±í£º"<<endl;
+		cout<<"ä½œä¸šåˆ—è¡¨ï¼š"<<endl;
 		cout<<str<<endl;
-		cout<<"Òª²é¿´µÄÈËµÄĞÕÃû(ÊäÈëquitÍË³ö)£º";
+		cout<<"è¦æŸ¥çœ‹çš„äººçš„å§“å(è¾“å…¥quité€€å‡º)ï¼š";
 		cin>>name; 
 		if(name=="quit")
 		{
-			return 0; //½áÊø³ÌĞò 
+			return 0; //ç»“æŸç¨‹åº 
 		}
 		search();
 		print();
 		ie();
-		system("pause"); //"°´ÈÎÒâ¼ü¼ÌĞø"
-		system("cls"); //ÇåÆÁ 
+		system("pause"); //"æŒ‰ä»»æ„é”®ç»§ç»­"
+		system("cls"); //æ¸…å± 
 	}
 	return 0;
 }
