@@ -5,7 +5,8 @@ New XGJ Helper是一个小管家辅助程序
 它可以帮助你：  
  获取作业列表并查看  
  输出作业url  
- 查看教师信息  
+ 查看教师信息
+ 程序基于https://github.com/sh06y/xgj-helper
 -------------  
 本项目暂不完全开源
 您可以在releases目录下载编译好的版本  
