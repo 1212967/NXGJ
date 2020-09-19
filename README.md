@@ -1,4 +1,4 @@
-# NZGJ
+# NXGJ
 新小管家助手
 -------------
 New XGJ Helper是一个小管家辅助程序  
