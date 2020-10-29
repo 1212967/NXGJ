@@ -1,33 +1,41 @@
 /*
-æ¬¢è¿æŸ¥çœ‹web.exeçš„æºä»£ç 
-å¯ä»¥ä½¿ç”¨å…¶ä¸­çš„ä»£ç ï¼Œä½†æ˜¯è¦æ³¨æ˜ä½œè€…
-æœ€åæ›´æ–°ï¼š2020.9.18
+»¶Ó­²é¿´web.exeµÄÔ´´úÂë
+¿ÉÒÔÊ¹ÓÃÆäÖĞµÄ´úÂë£¬µ«ÊÇÒª×¢Ã÷×÷Õß
+×÷ÕßQQ3239088523
+×îºó¸üĞÂ£º2020.10.29
+ĞŞ¸´ÁËÁ´½Ó²»±»Çå¿ÕµÄÎÊÌâ 
 For NXGJ 
 */ 
-//å¤´æ–‡ä»¶ 
+//Í·ÎÄ¼ş 
 #include <iostream>
 #include <windows.h>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <shellapi.h> 
-//å‘½åç©ºé—´ 
+//ÃüÃû¿Õ¼ä 
 using namespace std;
-string str; //æ•°æ® 
-string name; //åŒå­¦å§“å 
-char end[50]="-----"; //ç»“æŸæ ‡å¿— 
-char *p; //æŒ‡é’ˆ 
-string urls[30]; //å­˜å‚¨æ‰¾åˆ°çš„åœ°å€ 
-int url=0; //æŸ¥æ‰¾åˆ°çš„åœ°å€çš„æ•°é‡ 
-int getdata() //è·å–ä½œä¸šåˆ—è¡¨çš„å‡½æ•° 
+string str; //Êı¾İ 
+string name; //Í¬Ñ§ĞÕÃû 
+char end[50]="-----"; //½áÊø±êÖ¾ 
+char *p; //Ö¸Õë 
+string urls[30]; //´æ´¢ÕÒµ½µÄµØÖ· 
+int url=0; //²éÕÒµ½µÄµØÖ·µÄÊıÁ¿
+int found=0; 
+int UI()
+{
+	cout<<"Web.exe for NXGJ"<<endl;
+	cout<<"made by 1212967"<<endl;
+	cout<<"----------------------"<<endl;
+}
+int getdata() //»ñÈ¡×÷ÒµÁĞ±íµÄº¯Êı 
 {
 	ifstream get("data.txt");
 	std::ostringstream tmp; 
    	tmp << get.rdbuf(); 
    	str = tmp.str();
-	return 0;
 }
-int search() //ä¸»è¦ç®—æ³• é€šè¿‡å§“åå®šä½å¹¶æå–url 
+int search() //Ö÷ÒªËã·¨ Í¨¹ıĞÕÃû¶¨Î»²¢ÌáÈ¡url 
 {
 	string::size_type idx;
 	ifstream file;
@@ -43,6 +51,7 @@ int search() //ä¸»è¦ç®—æ³• é€šè¿‡å§“åå®šä½å¹¶æå–url
 		//p=(strstr(strLine,name);
 		else if(strLine==name)
 		{
+			found=1;
 			while(1)
 			{
 				getline(file,strLine);
@@ -69,9 +78,13 @@ int search() //ä¸»è¦ç®—æ³• é€šè¿‡å§“åå®šä½å¹¶æå–url
 			}
 		}              
     }
+    if(!found)
+    {
+    	cout<<"Ã»ÓĞÕÒµ½..."<<endl;
+	}
 	//file.close();
 }
-int print() //è¾“å‡ºåœ°å€çš„å‡½æ•° 
+int print() //Êä³öµØÖ·µÄº¯Êı 
 {
 	int b=0;
 	for(int a=0;a<url;a++)
@@ -79,32 +92,36 @@ int print() //è¾“å‡ºåœ°å€çš„å‡½æ•°
 		cout<<urls[a]<<endl; 
 	}
 }
-int ie() //ç”¨æµè§ˆå™¨æ‰“å¼€åœ°å€çš„å‡½æ•° 
+int ie() //ÓÃä¯ÀÀÆ÷´ò¿ªµØÖ·µÄº¯Êı 
 {
 	for(int a=0;a<url;a++)
 	{
 		 ShellExecute(NULL,"open","explorer.exe",urls[a].c_str(), NULL, SW_SHOW);
-		 _sleep(1000); 
+		 Sleep(1000); 
 	}	
 }
-int main() //ä¸»å‡½æ•° 
+int main() //Ö÷º¯Êı 
 {
+	system("cls");
 	getdata();
 	while(1)
 	{ 
-		cout<<"ä½œä¸šåˆ—è¡¨ï¼š"<<endl;
+		UI();
+		cout<<"×÷ÒµÁĞ±í£º"<<endl;
 		cout<<str<<endl;
-		cout<<"è¦æŸ¥çœ‹çš„äººçš„å§“å(è¾“å…¥quité€€å‡º)ï¼š";
+		cout<<"Òª²é¿´µÄÈËµÄĞÕÃû(ÊäÈëquit·µ»ØÖ÷³ÌĞò)£º";
 		cin>>name; 
 		if(name=="quit")
 		{
-			return 0; //ç»“æŸç¨‹åº 
+			system("cls"); 
+			return 0; //½áÊø³ÌĞò 
 		}
 		search();
 		print();
 		ie();
-		system("pause"); //"æŒ‰ä»»æ„é”®ç»§ç»­"
-		system("cls"); //æ¸…å± 
+		system("pause"); //"°´ÈÎÒâ¼ü¼ÌĞø"
+		system("cls"); //ÇåÆÁ 
+		url=0;//¸´Î» Ö®Ç°Íü¼Ç¸´Î»µ¼ÖÂÖØ¸´´ò¿ª´íÎó 
 	}
 	return 0;
 }
